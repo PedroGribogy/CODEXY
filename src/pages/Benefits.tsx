@@ -121,13 +121,13 @@ const Benefits = () => {
   ];
 
   return (
-    <div id="benefits" className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-blue-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="benefits" className="relative min-h-screen flex items-center justify-center">
+      <div className="section-container">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="section-title">
             Por que escolher a Codexy?
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Descubra como podemos transformar sua presença digital com soluções inovadoras e personalizadas
           </p>
         </div>
@@ -138,13 +138,13 @@ const Benefits = () => {
               key={benefit.title}
               frontContent={
                 <div className="p-8">
-                  <div className="text-blue-600 mb-4">
+                  <div className="text-primary mb-4">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     {benefit.description}
                   </p>
                 </div>
@@ -152,31 +152,31 @@ const Benefits = () => {
               backContent={
                 <div className="p-6">
                   <div className="flex flex-col h-full">
-                    <h4 className="text-lg font-semibold text-blue-900 mb-4">Mais Detalhes</h4>
+                    <h4 className="text-lg font-semibold text-primary mb-4">Mais Detalhes</h4>
                     <div className="space-y-4 flex-grow">
                       <div>
-                        <h5 className="font-medium text-blue-900 mb-2 flex items-center gap-2">
+                        <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
                           <Code2 className="w-4 h-4" />
                           Tecnologias Utilizadas
                         </h5>
                         <ul className="space-y-1">
                           {benefit.details.technologies.map((tech, index) => (
-                            <li key={index} className="flex items-center gap-2 text-sm text-gray-700">
-                              <Check className="w-4 h-4 text-blue-600" />
+                            <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary" />
                               {tech}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h5 className="font-medium text-blue-900 mb-2 flex items-center gap-2">
+                        <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
                           <ArrowRight className="w-4 h-4" />
                           Vantagens
                         </h5>
                         <ul className="space-y-1">
                           {benefit.details.advantages.map((advantage, index) => (
-                            <li key={index} className="flex items-center gap-2 text-sm text-gray-700">
-                              <Check className="w-4 h-4 text-blue-600" />
+                            <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary" />
                               {advantage}
                             </li>
                           ))}
@@ -193,13 +193,13 @@ const Benefits = () => {
         <div className="text-center mt-16">
           <a
             href="#contact"
-            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 hover:scale-105 active:scale-95"
+            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 transition-all duration-200 hover:scale-105 active:scale-95"
           >
             Comece seu projeto
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

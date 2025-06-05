@@ -1,67 +1,106 @@
-import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Github } from 'lucide-react';
+import { type FC, type MouseEvent } from 'react';
+import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, type LucideIcon } from 'lucide-react';
 
-const Footer = () => {
+interface SocialLink {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+}
+
+interface FooterLink {
+  href: string;
+  label: string;
+}
+
+interface FooterGroup {
+  title: string;
+  links: FooterLink[];
+}
+
+interface ContactInfo {
+  icon: LucideIcon;
+  text: string;
+  href: string;
+}
+
+const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offsetTop = element.offsetTop;
-      window.scrollTo({
-        top: offsetTop - 64,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const socialLinks = [
-    { icon: Facebook, href: 'https://facebook.com/codexy', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/codexy', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/codexy', label: 'LinkedIn' },
-    { icon: Github, href: 'https://github.com/codexy', label: 'GitHub' },
+  const socialLinks: SocialLink[] = [
+    {
+      href: 'https://facebook.com',
+      icon: Facebook,
+      label: 'Facebook',
+    },
+    {
+      href: 'https://twitter.com',
+      icon: Twitter,
+      label: 'Twitter',
+    },
+    {
+      href: 'https://instagram.com',
+      icon: Instagram,
+      label: 'Instagram',
+    },
   ];
 
-  const contactInfo = [
-    { icon: Mail, text: 'contato@codexy.com.br', href: 'mailto:contato@codexy.com.br' },
-    { icon: Phone, text: '(11) 99999-9999', href: 'tel:+5511999999999' },
-    { icon: MapPin, text: 'São Paulo, SP', href: 'https://maps.google.com/?q=São+Paulo,+SP' },
-  ];
-
-  const footerLinks = [
+  const footerLinks: FooterGroup[] = [
     {
       title: 'Empresa',
       links: [
-        { label: 'Sobre', href: '#about', isInternal: true },
-        { label: 'Projetos', href: '#projects', isInternal: true },
-        { label: 'Benefícios', href: '#benefits', isInternal: true },
-        { label: 'Fundadores', href: '#founders', isInternal: true },
+        { href: '#about', label: 'Sobre' },
+        { href: '#projects', label: 'Projetos' },
+        { href: '#benefits', label: 'Benefícios' },
       ],
     },
     {
       title: 'Recursos',
       links: [
-        { label: 'Blog', href: '/blog', isInternal: false },
-        { label: 'FAQ', href: '/faq', isInternal: false },
-        { label: 'Suporte', href: '/suporte', isInternal: false },
-        { label: 'Termos de Uso', href: '/termos', isInternal: false },
+        { href: '/blog', label: 'Blog' },
+        { href: '/docs', label: 'Documentação' },
+        { href: '/support', label: 'Suporte' },
       ],
     },
   ];
 
+  const contactInfo: ContactInfo[] = [
+    {
+      icon: Mail,
+      text: 'contato@codexy.com',
+      href: 'mailto:contato@codexy.com',
+    },
+    {
+      icon: Phone,
+      text: '+55 (11) 99999-9999',
+      href: 'tel:+5511999999999',
+    },
+    {
+      icon: MapPin,
+      text: 'São Paulo, SP',
+      href: 'https://maps.google.com',
+    },
+  ];
+
+  const scrollToSection = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <footer className="bg-white">
+    <footer className="bg-black/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Social Links */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-2xl font-bold">
+              <h2 className="text-2xl font-bold text-white">
                 Codexy
                 <span className="text-2xl font-bold text-blue-500">{'</>'}</span>
               </h2>
-              <p className="mt-4 text-gray-600 max-w-xs">
+              <p className="mt-4 text-gray-300 max-w-xs">
                 Transformando ideias em realidade digital com tecnologia e criatividade.
               </p>
             </div>
@@ -84,7 +123,7 @@ const Footer = () => {
           {/* Footer Links */}
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">
                 {group.title}
               </h3>
               <ul className="mt-4 space-y-4">
@@ -92,7 +131,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      onClick={link.isInternal ? (e) => handleClick(e, link.href.slice(1)) : undefined}
+                      onClick={link.href.startsWith('#') ? (e) => scrollToSection(e, link.href.slice(1)) : undefined}
                       className="text-gray-400 hover:text-blue-500 transition-colors text-sm"
                     >
                       {link.label}
@@ -105,7 +144,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">
               Contato
             </h3>
             <ul className="mt-4 space-y-4">
@@ -124,8 +163,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-center text-sm text-gray-400">
+        <div className="mt-12 border-t border-gray-800 pt-8">
+          <p className="text-center text-sm text-gray-500">
             &copy; {currentYear} Codexy. Todos os direitos reservados.
           </p>
         </div>

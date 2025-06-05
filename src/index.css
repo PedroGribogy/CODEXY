@@ -2,58 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+@layer base {
+  :root {
+    --background: 220 20% 10%;
+    --foreground: 0 0% 100%;
+    --card: 220 20% 13%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 20% 13%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 20% 16%;
+    --muted-foreground: 215 20.2% 75.1%;
+    --accent: 220 20% 16%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 16%;
+    --input: 220 20% 16%;
+    --ring: 224.3 76.3% 48%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth scroll-pt-20;
+  }
+
+  body {
+    @apply font-sans antialiased text-white bg-[#0a0a0c];
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #root {
+    @apply isolate;
+    min-height: 100vh;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer components {
+  .glass-nav {
+    @apply bg-black/30 backdrop-blur-md border-b border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-black/30 backdrop-blur-md border border-white/10 rounded-xl;
+  }
+
+  .modern-button {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
+  }
+
+  .primary-button {
+    @apply modern-button bg-white text-black hover:bg-white/90 hover:scale-105 active:scale-95;
+  }
+
+  .secondary-button {
+    @apply modern-button bg-white/10 text-white hover:bg-white/20 hover:scale-105 active:scale-95;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+    background: linear-gradient(to right, #fff, #999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-subtitle {
+    @apply text-xl text-gray-400 mb-12;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors;
+  }
+
+  .nav-link-active {
+    @apply text-white font-semibold;
+  }
 }
 
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Hover Flip Animation */
+.hover-flip:hover > div {
+  transform: rotateY(180deg);
+}
+
+/* Estilos específicos para seções */
 section {
-  min-height: 100vh;
-  padding-top: 4rem;
-  scroll-margin-top: 5rem;
+  @apply relative min-h-screen w-full;
+  scroll-snap-align: start;
 }
 
-/* Estilos para links ativos na navegação */
-.active {
-  @apply text-blue-600;
-}
-
-/* Estilos para transições suaves */
-.transition-nav {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-/* Estilos para hover em links */
-.hover-nav {
-  @apply hover:text-blue-500 hover:scale-105;
-}
-
-/* Estilos para o menu mobile */
-.mobile-menu {
-  @apply transition-all duration-300 ease-in-out transform;
-}
-
-.mobile-menu.open {
-  @apply translate-x-0;
-}
-
-.mobile-menu.closed {
-  @apply -translate-x-full;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-.social-icon {
-  @apply hover:text-blue-500 hover:scale-105;
+/* Responsividade */
+@media (max-width: 640px) {
+  .section-title {
+    @apply text-3xl;
+  }
+  
+  .section-subtitle {
+    @apply text-lg;
+  }
 }
