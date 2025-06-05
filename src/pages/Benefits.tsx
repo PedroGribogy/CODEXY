@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code2, Rocket, Palette, Clock, Shield, HeartHandshake, Check, ArrowRight } from 'lucide-react';
+import FlipCard from '../components/FlipCard';
 
 const Benefits = () => {
   const benefits = [
@@ -133,13 +134,10 @@ const Benefits = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit) => (
-            <div
+            <FlipCard
               key={benefit.title}
-              className="group h-[400px] [perspective:1000px]"
-            >
-              <div className="relative h-full w-full rounded-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                {/* Front of the card */}
-                <div className="absolute inset-0 bg-white rounded-xl shadow-lg p-8">
+              frontContent={
+                <div className="p-8">
                   <div className="text-blue-600 mb-4">
                     {benefit.icon}
                   </div>
@@ -150,9 +148,9 @@ const Benefits = () => {
                     {benefit.description}
                   </p>
                 </div>
-
-                {/* Back of the card */}
-                <div className="absolute inset-0 h-full w-full rounded-xl bg-blue-50 p-6 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+              }
+              backContent={
+                <div className="p-6">
                   <div className="flex flex-col h-full">
                     <h4 className="text-lg font-semibold text-blue-900 mb-4">Mais Detalhes</h4>
                     <div className="space-y-4 flex-grow">
@@ -187,8 +185,8 @@ const Benefits = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              }
+            />
           ))}
         </div>
 
