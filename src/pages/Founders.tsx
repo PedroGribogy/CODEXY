@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Mail, Award, Briefcase, GraduationCap, Code, Palette } from 'lucide-react';
+import FlipCard from '../components/FlipCard';
 
 const Founders = () => {
   const founders = [
@@ -72,13 +73,11 @@ const Founders = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {founders.map((founder) => (
-            <div
+            <FlipCard
               key={founder.name}
-              className="group h-[500px] [perspective:1000px]"
-            >
-              <div className="relative h-full w-full rounded-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                {/* Front of the card */}
-                <div className="absolute inset-0 bg-white rounded-xl shadow-lg p-8">
+              height="h-[500px]"
+              frontContent={
+                <div className="p-8">
                   <div className="text-center mb-6">
                     <div className="w-32 h-32 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="text-4xl font-bold text-blue-600">
@@ -122,9 +121,9 @@ const Founders = () => {
                     </a>
                   </div>
                 </div>
-
-                {/* Back of the card */}
-                <div className="absolute inset-0 h-full w-full rounded-xl bg-blue-50 p-6 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+              }
+              backContent={
+                <div className="p-6">
                   <div className="flex flex-col h-full">
                     <h4 className="text-lg font-semibold text-blue-900 mb-6">Mais Sobre {founder.name}</h4>
                     <div className="space-y-6 flex-grow">
@@ -180,8 +179,8 @@ const Founders = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              }
+            />
           ))}
         </div>
       </div>

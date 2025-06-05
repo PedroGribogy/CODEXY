@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, Code, Palette, Globe, Calendar, Users, Star } from 'lucide-react';
 import { Link } from 'react-scroll';
+import FlipCard from '../components/FlipCard';
 
 const Projects = () => {
   const projects = [
@@ -72,39 +73,34 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <div
+            <FlipCard
               key={project.title}
-              className="group h-[400px] [perspective:1000px]"
-            >
-              <div className="relative h-full w-full rounded-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                {/* Front of the card */}
-                <div className="absolute inset-0 bg-white rounded-xl shadow-lg overflow-hidden">
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      {project.icon}
-                      <ExternalLink className="w-5 h-5 text-gray-400 hover:text-blue-600 cursor-pointer" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+              frontContent={
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    {project.icon}
+                    <ExternalLink className="w-5 h-5 text-gray-400 hover:text-blue-600 cursor-pointer" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-
-                {/* Back of the card */}
-                <div className="absolute inset-0 h-full w-full rounded-xl bg-blue-50 p-6 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+              }
+              backContent={
+                <div className="p-6">
                   <div className="flex flex-col h-full">
                     <h4 className="text-lg font-semibold text-blue-900 mb-4">Detalhes do Projeto</h4>
                     <div className="space-y-4 flex-grow">
@@ -131,8 +127,8 @@ const Projects = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              }
+            />
           ))}
         </div>
 
