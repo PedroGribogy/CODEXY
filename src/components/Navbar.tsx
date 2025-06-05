@@ -40,7 +40,7 @@ const Navbar = () => {
             className="flex items-center space-x-2 cursor-pointer"
           >
             <span className="text-2xl font-bold text-white">
-              Codexy<span className="text-blue-400">{'/>'}</span>
+              Codexy<span className="text-blue-400">{'</>'}</span>
             </span>
           </Link>
 

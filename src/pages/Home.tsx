@@ -11,7 +11,7 @@ const Home = () => {
           {/* Logo */}
           <div className="transform hover:scale-110 transition-transform duration-300 cursor-pointer">
             <h2 className="text-gradient text-7xl md:text-8xl font-bold tracking-tighter">
-              Codexy<span className="text-blue-400">{'/>'}</span>
+              Codexy<span className="text-blue-400">{'</>'}</span>
             </h2>
           </div>
 
