@@ -73,62 +73,84 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <FlipCard
-              key={project.title}
-              frontContent={
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    {project.icon}
-                    <ExternalLink className="w-5 h-5 text-gray-400 hover:text-primary cursor-pointer" />
+            <div className="h-[400px]">
+              <FlipCard
+                key={project.title}
+                frontContent={
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      {project.icon}
+                      <ExternalLink className="w-5 h-5 text-gray-400 hover:text-primary cursor-pointer" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-300 mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-300 mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              }
-              backContent={
-                <div className="p-6">
-                  <div className="flex flex-col h-full">
-                    <h4 className="text-lg font-semibold text-primary mb-4">Detalhes do Projeto</h4>
-                    <div className="space-y-4 flex-grow">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <span className="text-muted-foreground">Concluído em: {project.details.completionDate}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Star className="w-5 h-5 text-primary" />
-                        <span className="text-muted-foreground">Satisfação do Cliente: {project.details.clientSatisfaction}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Users className="w-5 h-5 text-primary" />
-                        <span className="text-muted-foreground">Equipe: {project.details.teamSize}</span>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="font-medium text-primary mb-2">Principais Recursos:</h5>
-                        <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                          {project.details.features.map((feature, index) => (
-                            <li key={index}>{feature}</li>
-                          ))}
-                        </ul>
+                }
+                backContent={
+                  <div className="p-6">
+                    <div className="flex flex-col h-full">
+                      <h4 className="text-lg font-semibold text-primary mb-4">Detalhes do Projeto</h4>
+                      <div className="space-y-4 flex-grow">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-5 h-5 text-primary" />
+                          <span className="text-muted-foreground">Concluído em: {project.details.completionDate}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Star className="w-5 h-5 text-primary" />
+                          <span className="text-muted-foreground">Satisfação do Cliente: {project.details.clientSatisfaction}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Users className="w-5 h-5 text-primary" />
+                          <span className="text-muted-foreground">Equipe: {project.details.teamSize}</span>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="font-medium text-primary mb-2">Principais Recursos:</h5>
+                          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                            {project.details.features.map((feature, index) => (
+                              <li key={index}>{feature}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="font-medium text-primary mb-2">Tecnologias Utilizadas:</h5>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="font-medium text-primary mb-2">Impacto do Projeto:</h5>
+                          <p className="text-muted-foreground text-sm">
+                            Este projeto trouxe resultados significativos para o cliente, incluindo aumento de conversão, 
+                            melhoria na experiência do usuário e otimização de processos internos.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              }
-            />
+                }
+              />
+            </div>
           ))}
         </div>
 

@@ -15,51 +15,27 @@ const FlipCard = ({
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    // Check initially
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-
-    // Add resize listener
     window.addEventListener('resize', checkMobile);
-    
-    // Cleanup
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const handleClick = () => {
-    if (isMobile) {
-      setIsFlipped(!isFlipped);
-    }
+    if (isMobile) setIsFlipped(f => !f);
   };
 
   return (
-    <div 
-      className={`${height} [perspective:1000px] cursor-pointer ${!isMobile ? 'hover-flip' : ''}`}
+    <div
+      className={`${height} flip-card-outer`}
       onClick={handleClick}
     >
-      <div 
-        className={`
-          relative h-full w-full rounded-xl glass-card
-          transition-all duration-500 
-          [transform-style:preserve-3d]
-          ${isFlipped ? '[transform:rotateY(180deg)]' : ''}
-        `}
-      >
-        {/* Front of the card */}
-        <div className="absolute inset-0 w-full h-full [backface-visibility:hidden]">
-          <div className="h-full">
-            {frontContent}
-          </div>
+      <div className={`flip-card-inner${isMobile && isFlipped ? ' flipped' : ''}`}>
+        <div className="flip-card-front">
+          {frontContent}
         </div>
-
-        {/* Back of the card */}
-        <div className="absolute inset-0 h-full w-full glass-card [transform:rotateY(180deg)] [backface-visibility:hidden]">
-          <div className="h-full">
-            {backContent}
-          </div>
+        <div className="flip-card-back">
+          {backContent}
         </div>
       </div>
     </div>

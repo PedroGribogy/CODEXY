@@ -134,59 +134,82 @@ const Benefits = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit) => (
-            <FlipCard
-              key={benefit.title}
-              frontContent={
-                <div className="p-8">
-                  <div className="text-primary mb-4">
-                    {benefit.icon}
+            <div className="h-[400px]">
+              <FlipCard
+                key={benefit.title}
+                frontContent={
+                  <div className="p-8">
+                    <div className="text-primary mb-4">
+                      {benefit.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-300">
+                      {benefit.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-300">
-                    {benefit.description}
-                  </p>
-                </div>
-              }
-              backContent={
-                <div className="p-6">
-                  <div className="flex flex-col h-full">
-                    <h4 className="text-lg font-semibold text-primary mb-4">Mais Detalhes</h4>
-                    <div className="space-y-4 flex-grow">
-                      <div>
-                        <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
-                          <Code2 className="w-4 h-4" />
-                          Tecnologias Utilizadas
-                        </h5>
-                        <ul className="space-y-1">
-                          {benefit.details.technologies.map((tech, index) => (
-                            <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Check className="w-4 h-4 text-primary" />
-                              {tech}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
-                          <ArrowRight className="w-4 h-4" />
-                          Vantagens
-                        </h5>
-                        <ul className="space-y-1">
-                          {benefit.details.advantages.map((advantage, index) => (
-                            <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Check className="w-4 h-4 text-primary" />
-                              {advantage}
-                            </li>
-                          ))}
-                        </ul>
+                }
+                backContent={
+                  <div className="p-6">
+                    <div className="flex flex-col h-full">
+                      <h4 className="text-lg font-semibold text-primary mb-4">Mais Detalhes</h4>
+                      <div className="space-y-4 flex-grow">
+                        <div>
+                          <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
+                            <Code2 className="w-4 h-4" />
+                            Tecnologias Utilizadas
+                          </h5>
+                          <ul className="space-y-1">
+                            {benefit.details.technologies.map((tech, index) => (
+                              <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Check className="w-4 h-4 text-primary" />
+                                {tech}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
+                            <ArrowRight className="w-4 h-4" />
+                            Vantagens
+                          </h5>
+                          <ul className="space-y-1">
+                            {benefit.details.advantages.map((advantage, index) => (
+                              <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Check className="w-4 h-4 text-primary" />
+                                {advantage}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
+                            <Rocket className="w-4 h-4" />
+                            Resultados Esperados
+                          </h5>
+                          <p className="text-sm text-muted-foreground">
+                            Ao implementar estas soluções, você pode esperar uma melhoria significativa na performance,
+                            escalabilidade e manutenibilidade do seu projeto, além de uma experiência de usuário mais
+                            fluida e moderna.
+                          </p>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="font-medium text-primary mb-2 flex items-center gap-2">
+                            <Shield className="w-4 h-4" />
+                            Suporte e Manutenção
+                          </h5>
+                          <p className="text-sm text-muted-foreground">
+                            Oferecemos suporte contínuo e atualizações regulares para garantir que sua solução
+                            permaneça atualizada e segura, com monitoramento 24/7 e backups automáticos.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              }
-            />
+                }
+              />
+            </div>
           ))}
         </div>
 
